@@ -1,0 +1,82 @@
+### Test creating a new faculty
+POST http://localhost:3000/faculty-api/
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "department": "Computer Science",
+  "dateOfJoining": "2022-06-15"
+}
+
+### Test retrieving all faculties
+GET http://localhost:3000/faculty-api/
+
+### Test updating a faculty
+PUT http://localhost:3000/faculty-api/67eb58ee609513be062ade2e
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "department": "Mathematics"
+}
+
+### Test soft-deleting a faculty
+PUT http://localhost:3000/faculty-api/delete/1
+Content-Type: application/json
+
+{
+  "isActive": false
+}
+
+### Test creating a new department
+POST http://localhost:3000/department-api/
+Content-Type: application/json
+
+{
+  "name": "Physics",
+  "head": "Dr. Albert Einstein",
+  "noOfFaculties": 10
+}
+
+### Test retrieving all departments
+GET http://localhost:3000/department-api/
+
+### Test updating a department
+PUT http://localhost:3000/department-api/1
+Content-Type: application/json
+
+{
+  "head": "Dr. Marie Curie",
+  "noOfFaculties": 12
+}
+
+
+### Create a new class
+POST http://localhost:4000/class-api/
+Content-Type: application/json
+
+{
+  "name": "Mathematics 101",
+  "department": "Mathematics",
+  "faculty": "John Doe",
+  "studentsCount": 30,
+  "schedule": "Monday and Wednesday, 10:00 AM - 12:00 PM"
+}
+
+### Retrieve all classes
+GET http://localhost:4000/class-api/
+
+### Update a class
+PUT http://localhost:4000/class-api/<<CLASS_ID>>
+Content-Type: application/json
+
+{
+  "name": "Advanced Mathematics",
+  "schedule": "Tuesday and Thursday, 1:00 PM - 3:00 PM"
+}
+
+### Delete a class
+DELETE http://localhost:4000/class-api/<<CLASS_ID>>
+
