@@ -4,11 +4,11 @@ function Layout() {
   return (
     <div className="w-100" style={{ height: '100vh' }}>
       {/* Header */}
-      <nav className="navbar bg-primary text-white p-3">
+      <nav className="navbar text-white p-3" style={{backgroundColor: "#920f0f"}}>
         <div className="container justify-content-between">
           <h4 className="mb-0 text-white">My App</h4>
           <button
-            className="btn btn-outline-light"
+            className="btn btn-outline-light p-1 px-4"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasRight"

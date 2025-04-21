@@ -81,14 +81,15 @@ function Display() {
       const periods = timetableObj[day] || [];
       const periodData = {};
       
-      // Initialize all periods as empty
-      for (let i = 1; i <= 5; i++) {
+      // Initialize all 6 periods as empty
+      for (let i = 1; i <= 6; i++) {
         periodData[`p${i}`] = '-';
       }
+
       
       // Fill in the actual period data
       periods.forEach(period => {
-        if (period.period >= 1 && period.period <= 5) {
+        if (period.period >= 1 && period.period <= 6) {
           periodData[`p${period.period}`] = period.subject;
         }
       });
@@ -120,7 +121,7 @@ function Display() {
                 >
                   <option value="">Select Faculty</option>
                   {facultyList.map(fac => (
-                    <option key={fac._id} value={fac._id}>
+                    <option key={fac._id} value={fac.facultyId}>
                       {fac.name} (ID: {fac.facultyId})
                     </option>
                   ))}
@@ -154,14 +155,16 @@ function Display() {
         <Alert variant="danger">{error.timetable}</Alert>
       ) : timetable ? (
         <Table striped bordered hover responsive>
-          <thead className="table-primary">
+          <thead className="table-dark text-danger" style={{ backgroundColor: '#920f0f !important' }}>
+
             <tr>
-              <th>Day</th>
-              <th>Class 1</th>
-              <th>Class 2</th>
-              <th>Class 3</th>
-              <th>Class 4</th>
-              <th>Class 5</th>
+              <th>Day / Timings</th>
+              <th className='text-center'>1 <br /> (10:00 - 11:00)</th>
+              <th className='text-center'>2 <br /> (11:00 - 12:00)</th>
+              <th className='text-center'>3 <br /> (12:00 - 13:00)</th>
+              <th className='text-center'>4 <br /> (13:40 - 14:40)</th>
+              <th className='text-center'>5 <br /> (14:40 - 15:40)</th>
+              <th className='text-center'>6 <br /> (15:40 - 16:40)</th>
             </tr>
           </thead>
           <tbody>
@@ -173,6 +176,7 @@ function Display() {
                 <td>{entry.p3}</td>
                 <td>{entry.p4}</td>
                 <td>{entry.p5}</td>
+                <td>{entry.p6}</td>
               </tr>
             ))}
           </tbody>

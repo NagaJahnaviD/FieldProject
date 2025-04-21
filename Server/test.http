@@ -44,22 +44,22 @@ Content-Type: application/json
   "facultyId": "001A04",
   "facultyName": "John",
   "timetable": {
-    "Thursday": [
-      {
-        "period": 2,
-        "subject": "chemistry",
-        "time": "11:00 - 12:00",
-        "year": 1,
-        "branch": "CSE-D"
-      }
-    ],
     "Friday": [
       {
-        "period": 1,
-        "subject": "EVS",
-        "time": "10:00 - 1:00",
+        "period": 5,
+        "subject": "chemistry",
+        "time": "14:40 - 15:40",
         "year": 1,
-        "branch": "CSE-D"
+        "branch": "AIML-C"
+      }
+    ],
+    "Saturday": [
+      {
+        "period": 6,
+        "subject": "EVS",
+        "time": "15:40 - 16:40",
+        "year": 1,
+        "branch": "CSBS"
       }
     ]
   }
