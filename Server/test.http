@@ -3,17 +3,21 @@ POST http://localhost:3000/faculty-api/
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "john.doe@example.com",
+  "facultyId": "001A04",
+  "name": "John DOe",
+  "email": "john@example.com",
   "department": "Computer Science",
-  "dateOfJoining": "2022-06-15"
+  "dateOfJoining": "2019-11-18"
 }
 
 ### Test retrieving all faculties
 GET http://localhost:3000/faculty-api/
 
+### Get faculty by ID
+GET http://localhost:3000/faculty-api/68059bb7be95c98ad74d3c9e
+
 ### Test updating a faculty
-PUT http://localhost:3000/faculty-api/67eb58ee609513be062ade2e
+PUT http://localhost:3000/faculty-api/68059bb7be95c98ad74d3c9e
 Content-Type: application/json
 
 {
@@ -23,60 +27,75 @@ Content-Type: application/json
 }
 
 ### Test soft-deleting a faculty
-PUT http://localhost:3000/faculty-api/delete/1
+PUT http://localhost:3000/faculty-api/delete/68036a0e341105ab09630d9f
 Content-Type: application/json
 
 {
   "isActive": false
 }
 
-### Test creating a new department
-POST http://localhost:3000/department-api/
+
+
+### post new timetable record
+POST http://localhost:3000/tt-api/add 
 Content-Type: application/json
 
 {
-  "name": "Physics",
-  "head": "Dr. Albert Einstein",
-  "noOfFaculties": 10
+  "facultyId": "001A04",
+  "facultyName": "John",
+  "timetable": {
+    "Thursday": [
+      {
+        "period": 2,
+        "subject": "chemistry",
+        "time": "11:00 - 12:00",
+        "year": 1,
+        "branch": "CSE-D"
+      }
+    ],
+    "Friday": [
+      {
+        "period": 1,
+        "subject": "EVS",
+        "time": "10:00 - 1:00",
+        "year": 1,
+        "branch": "CSE-D"
+      }
+    ]
+  }
 }
 
-### Test retrieving all departments
-GET http://localhost:3000/department-api/
 
-### Test updating a department
-PUT http://localhost:3000/department-api/1
+### Get all timetables
+GET http://localhost:3000/tt-api/timetables
+
+
+### get timetable of specific faculty
+GET http://localhost:3000/tt-api/timetable/68059bb7be95c98ad74d3c9e
+
+### Update a timetable
+PUT http://localhost:3000/tt-api/update/68039b7d76446609f71ebfd7
 Content-Type: application/json
 
 {
-  "head": "Dr. Marie Curie",
-  "noOfFaculties": 12
+  "timetable":{
+    "Monday":[{
+      "period":2,
+      "subject":"chemistry",
+      "time":"11:00 - 12:00",
+      "year": 1,
+      "branch": "CSE-D"
+    }],
+    "Tuesday":[{
+      "period":1,
+      "subject":"EVS",
+      "time":"10:00 - 11:00",
+      "year": 1,
+      "branch": "CSE-D"
+    }]
+  }
 }
 
 
-### Create a new class
-POST http://localhost:4000/class-api/
-Content-Type: application/json
-
-{
-  "name": "Mathematics 101",
-  "department": "Mathematics",
-  "faculty": "John Doe",
-  "studentsCount": 30,
-  "schedule": "Monday and Wednesday, 10:00 AM - 12:00 PM"
-}
-
-### Retrieve all classes
-GET http://localhost:4000/class-api/
-
-### Update a class
-PUT http://localhost:4000/class-api/<<CLASS_ID>>
-Content-Type: application/json
-
-{
-  "name": "Advanced Mathematics",
-  "schedule": "Tuesday and Thursday, 1:00 PM - 3:00 PM"
-}
-
-### Delete a class
-DELETE http://localhost:4000/class-api/<<CLASS_ID>>
-
+### delete a timetable record
+DELETE  http://localhost:3000/tt-api/delete/68039c84306ad90b50a81cfc

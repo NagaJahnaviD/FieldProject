@@ -8,7 +8,7 @@ app.use(cors());
 
 // DB connection
 mongoose
-  .connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.DBURL)
   .then(() => {
     app.listen(port, () => console.log(`Server listening on port ${port}...`));
   })
@@ -16,15 +16,14 @@ mongoose
 
 // Import APIs
 const facultyApp = require("./APIs/facultyApi");
-const departmentApp = require("./APIs/departmentApi");
-const classApp = require("./APIs/classApi");
-app.use("/class-api", classApp);
+const ttApp = require('./APIs/ttApi')
+
 
 app.use(express.json()); // Middleware
 
 // Connect API routes
 app.use("/faculty-api", facultyApp);
-app.use("/department-api", departmentApp);
+app.use("/tt-api", ttApp)
 
 // Error handler middleware (4 args)
 app.use((err, req, res, next) => {

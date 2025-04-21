@@ -22,6 +22,18 @@ facultyApp.get(
   })
 );
 
+// Get all faculty by id
+facultyApp.get(
+  "/:id",
+  expressAsyncHandler(async (req, res) => {
+    const faculty = await Faculty.findById( req.params.id );
+    res.status(200).send({ message: "Faculties retrieved", payload: faculty });
+    console.log("Requested ID:", req.params.id);
+console.log("Faculty found:", faculty);
+
+  })
+);
+
 // Update faculty by ID
 facultyApp.put(
   "/:id",
