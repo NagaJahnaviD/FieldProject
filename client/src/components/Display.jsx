@@ -75,31 +75,33 @@ function Display() {
   // Function to transform timetable data for display
   const transformTimetableData = (timetableObj) => {
     if (!timetableObj) return [];
-    
+  
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
     return days.map(day => {
       const periods = timetableObj[day] || [];
       const periodData = {};
-      
+  
       // Initialize all 6 periods as empty
       for (let i = 1; i <= 6; i++) {
         periodData[`p${i}`] = '-';
       }
-
-      
+  
       // Fill in the actual period data
       periods.forEach(period => {
         if (period.period >= 1 && period.period <= 6) {
-          periodData[`p${period.period}`] = period.subject;
+          const label = `${period.subject} (${period.year}-${period.branch})`;
+          periodData[`p${period.period}`] = label;
         }
       });
-      
+  
       return {
         day,
         ...periodData
       };
     });
   };
+  
 
   const displayTimetable = transformTimetableData(timetable);
 
